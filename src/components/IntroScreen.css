@@ -17,43 +17,22 @@
   background-image: url('/images/intro-background.png');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.6);
-}
-
-.intro-content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  color: white;
-}
-
-.game-title {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 3rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-  letter-spacing: 0.1em;
+  filter: brightness(1);
 }
 
 .start-button {
-  padding: 1.5rem 4rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 350px;
+  height: 80px;
+  background: transparent;
   border: none;
-  border-radius: 50px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .start-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.5);
-}
-
-.start-button:active {
-  transform: scale(0.98);
+  opacity: 0.9;
 }
