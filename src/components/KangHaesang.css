@@ -1,0 +1,60 @@
+.kang-haesang {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-image {
+  width: 350px;
+  height: 450px;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  transition: all 0.3s ease;
+}
+
+.kang-haesang.angry .character-image {
+  animation: shake 0.5s ease-in-out;
+  filter: drop-shadow(0 0 30px rgba(255, 0, 0, 0.5));
+}
+
+.kang-haesang.surprised .character-image {
+  animation: bounce 0.5s ease-in-out;
+}
+
+.kang-haesang.speaking .character-image {
+  animation: speak 0.3s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(2deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes speak {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
