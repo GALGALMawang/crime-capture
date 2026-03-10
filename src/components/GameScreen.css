@@ -116,10 +116,7 @@
   }
 
   .answer-dialog {
-    top: 80px;
-    left: 5%;
-    right: 5%;
-    max-width: 90%;
+    display: none;
   }
 
   .dialog-content {
