@@ -1,12 +1,12 @@
 .intro-screen {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-bottom: 120px;
+  padding-bottom: 15%; /* 가로 모드에서 버튼 위치 조정 */
   box-sizing: border-box;
 }
 
@@ -29,30 +29,122 @@
   background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
   color: white;
   border: none;
-  padding: 0.8rem 2rem;
-  font-size: 1.2rem;
+  padding: 1.2rem 3rem;
+  font-size: 1.5rem;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.6);
+  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.6);
   animation: pulse 2s ease-in-out infinite;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .start-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.8);
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 12px 30px rgba(229, 57, 53, 0.8);
 }
 
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  50% { transform: scale(1.08); }
 }
 
-/* 가로 모드 */
-@media (max-width: 768px) {
-  .start-button {
-    padding: 1.2rem 3rem;
-    font-size: 1.5rem;
+/* 가이드 팝업 */
+.guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.guide-popup {
+  background: #111;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 20px;
+  border: 2px solid #e53935;
+  padding: 2rem;
+  color: white;
+  box-shadow: 0 0 50px rgba(229, 57, 53, 0.3);
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.guide-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #e53935;
+  text-align: center;
+  border-bottom: 1px solid rgba(229, 57, 53, 0.3);
+  padding-bottom: 1rem;
+}
+
+.guide-content {
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.guide-content ul {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.guide-content li {
+  margin-bottom: 0.8rem;
+}
+
+.guide-content strong {
+  color: #ffd700;
+}
+
+.guide-hint {
+  text-align: center;
+  color: #888;
+  font-style: italic;
+  margin-top: 1.5rem;
+}
+
+.guide-close-button {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #e53935;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.guide-close-button:hover {
+  background: #c62828;
+}
+
+/* 가로 모드 (낮은 높이) 대응 */
+@media (max-height: 500px) {
+  .guide-popup {
+    max-width: 500px;
+    padding: 1rem 1.5rem;
   }
+  .guide-title { font-size: 1.4rem; margin-bottom: 0.8rem; padding-bottom: 0.5rem; }
+  .guide-content { font-size: 0.95rem; line-height: 1.5; }
+  .guide-content ul { margin: 0.5rem 0; }
+  .guide-hint { margin-top: 0.5rem; }
+  .guide-close-button { margin-top: 1rem; padding: 0.8rem; font-size: 1rem; }
 }
