@@ -20,190 +20,69 @@
   filter: brightness(0.3) grayscale(0.5);
 }
 
-/* 엔딩 이미지 팝업 (1:1 비율) */
-.ending-image-popup {
-  position: relative;
-  z-index: 5;
-  margin-bottom: 1.5rem;
-  animation: popupAppear 0.5s ease-out;
+/* 엔딩 이미지 - 가로 비율 */
+.ending-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  animation: fadeIn 0.5s ease-out;
 }
 
-.ending-image-popup img {
-  width: 300px;
-  height: 300px;
-  object-fit: contain;
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-  border: 3px solid rgba(255, 255, 255, 0.3);
+.ending-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.ending-image-popup.jail {
-  border-color: rgba(244, 67, 54, 0.5);
-}
-
-.ending-image-popup.confession {
-  border-color: rgba(33, 150, 243, 0.5);
-}
-
-@keyframes popupAppear {
-  0% {
-    opacity: 0;
-    transform: scale(0.8) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-.ending-title.anger {
-  color: #f44336;
-  font-size: 3rem;
-}
-
-.ending-title.remorse {
-  color: #2196F3;
-  font-size: 3rem;
-}
-
-.ending-title.neutral {
-  color: #607D8B;
-  font-size: 3rem;
-}
-
-.ending-quote.anger {
-  color: #FFCDD2;
-  font-size: 1.2rem;
-}
-
-.ending-quote.remorse {
-  color: #BBDEFB;
-  font-size: 1.2rem;
-}
-
-.ending-hint.victory {
-  color: #FFD700;
-  font-weight: bold;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .ending-content {
   position: relative;
-  z-index: 1;
+  z-index: 10;
   text-align: center;
-  color: white;
   padding: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  max-width: 500px;
 }
 
 .ending-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   border-radius: 20px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-bottom: 1rem;
 }
 
-.ending-badge.victory {
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  color: #333;
-  font-size: 1.1rem;
-  animation: victoryGlow 1s ease-in-out infinite;
-}
-
-.ending-badge.success {
-  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
-}
-
-.ending-badge.fail {
+.ending-badge.anger {
   background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+  color: white;
+}
+
+.ending-badge.remorse {
+  background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
+  color: white;
 }
 
 .ending-badge.neutral {
   background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
-}
-
-@keyframes victoryGlow {
-  0%, 100% {
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-  }
-}
-
-.ending-title.anger {
-  color: #f44336;
-}
-
-.ending-title.remorse {
-  color: #2196F3;
-}
-
-.ending-title.neutral {
-  color: #607D8B;
-}
-
-.ending-badge.neutral {
-  background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
-}
-
-.ending-title {
-  font-size: 4rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-.ending-title.success {
-  color: #4CAF50;
-}
-
-.ending-title.fail {
-  color: #f44336;
-}
-
-.ending-title.neutral {
-  color: #90A4AE;
-}
-
-.ending-subtitle {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.ending-emoji {
-  font-size: 4rem;
-  margin-bottom: 1.5rem;
-  animation: bounce 1s ease-in-out infinite;
-}
-
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  color: white;
 }
 
 .ending-quote {
+  color: white;
   font-size: 1.2rem;
   font-style: italic;
   margin-bottom: 1.5rem;
-  padding: 1rem 2rem;
-  border-radius: 10px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ending-quote.success {
-  color: #C8E6C9;
-  background: rgba(76, 175, 80, 0.2);
-  border: 1px solid rgba(76, 175, 80, 0.5);
-}
-
-.ending-quote.fail {
-  color: #FFCDD2;
-  background: rgba(244, 67, 54, 0.2);
-  border: 1px solid rgba(244, 67, 54, 0.5);
+  line-height: 1.6;
 }
 
 .ending-stats {
@@ -214,102 +93,65 @@
 }
 
 .stat {
-  padding: 0.75rem 1.5rem;
-  border-radius: 10px;
   font-weight: bold;
   font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
 }
 
 .stat.anger {
-  background: rgba(244, 67, 54, 0.2);
+  background: rgba(244, 67, 54, 0.3);
   color: #FFCDD2;
-  border: 1px solid rgba(244, 67, 54, 0.5);
 }
 
 .stat.remorse {
-  background: rgba(76, 175, 80, 0.2);
-  color: #C8E6C9;
-  border: 1px solid rgba(76, 175, 80, 0.5);
-}
-
-.ending-hint {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 2rem;
-}
-
-.ending-hint.success {
-  color: #4CAF50;
-  font-weight: bold;
+  background: rgba(33, 150, 243, 0.3);
+  color: #BBDEFB;
 }
 
 .restart-button {
-  padding: 1.5rem 4rem;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
   background: linear-gradient(135deg, #424242 0%, #212121 100%);
+  color: white;
   border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50px;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 30px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .restart-button:hover {
-  background: linear-gradient(135deg, #616161 0%, #424242 100%);
   transform: scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(135deg, #616161 0%, #424242 100%);
 }
 
-.restart-button:active {
-  transform: scale(0.98);
-}
-
+/* 가로 모드 최적화 */
 @media (max-width: 768px) {
   .ending-content {
-    padding: 1rem;
+    padding: 1.5rem;
+    max-width: 90%;
   }
 
-  .ending-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .ending-subtitle {
-    font-size: 1.1rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .ending-emoji {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+  .ending-badge {
+    font-size: 1rem;
   }
 
   .ending-quote {
     font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    margin-bottom: 1rem;
   }
 
   .ending-stats {
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 1rem;
   }
 
   .stat {
     font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-  }
-
-  .ending-hint {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
+    padding: 0.4rem 0.8rem;
   }
 
   .restart-button {
-    padding: 1rem 3rem;
-    font-size: 1.1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
 }
