@@ -29,6 +29,18 @@ function App() {
   }, []);
 
   const handleStart = () => {
+    // 전체 화면 전환 시도
+    const element = document.documentElement;
+    if (element.requestFullscreen) {
+      element.requestFullscreen().catch(err => {
+        console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+      });
+    } else if ((element as any).webkitRequestFullscreen) { /* Safari */
+      (element as any).webkitRequestFullscreen();
+    } else if ((element as any).msRequestFullscreen) { /* IE11 */
+      (element as any).msRequestFullscreen();
+    }
+
     setGameResult(DEFAULT_RESULT);
     setGameState('playing');
   };

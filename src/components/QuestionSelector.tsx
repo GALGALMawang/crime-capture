@@ -64,9 +64,6 @@ const QuestionSelector: React.FC<QuestionSelectorProps> = ({ questions, onSelect
             disabled={disabled}
             style={getQuestionStyle(question)}
           >
-            <div className="question-badges">
-              {getBadges(question)}
-            </div>
             <span className="question-text">{question.text}</span>
           </button>
         ))}
