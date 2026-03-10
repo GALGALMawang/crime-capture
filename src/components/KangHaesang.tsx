@@ -27,9 +27,9 @@ const KangHaesang: React.FC<KangHaesangProps> = ({ emotion, isSpeaking = false }
   const getImageSource = () => {
     switch (emotion) {
       case 'crying':
-        return '/images/kang-haesang-crying.jpeg';
+        return '/images/kang-haesang-crying.png';
       case 'broken':
-        return '/images/kang-haesang-crying.jpeg';
+        return '/images/kang-haesang-crying.png';
       case 'angry':
         return '/images/kang-haesang-angry.png';
       case 'surprised':
