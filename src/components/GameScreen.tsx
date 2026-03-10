@@ -77,6 +77,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
       setRemorse(MAX_GAUGE);
       setEmotion('crying'); 
       setShowFinalChoice(true);
+      setIsProcessing(false); // 조작 잠금 해제
     }, 3000);
   };
 
