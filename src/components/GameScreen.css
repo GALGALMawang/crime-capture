@@ -318,7 +318,7 @@
 /* 대화창 */
 .answer-dialog {
   position: absolute;
-  top: 200px;
+  bottom: 12%;
   left: 5%;
   right: 5%;
   max-width: 800px;
