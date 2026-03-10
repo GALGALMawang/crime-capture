@@ -16,7 +16,7 @@
   width: 100%;
   height: 100%;
   background-image: url('/images/interrogation-room.png');
-  background-size: cover; /* 세로 모드에서는 cover가 유리함 */
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: #000;
@@ -91,9 +91,20 @@
   background: rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   overflow: hidden;
+  position: relative;
 }
 
-/* 대화창 - 캐릭터 위에 배치 */
+.gauge-fill {
+  height: 100%;
+  transition: width 0.5s ease-out, background-color 0.3s ease;
+  border-radius: 6px;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.gauge-wrapper.anger .gauge-percent { color: #f44336; }
+.gauge-wrapper.remorse .gauge-percent { color: #4CAF50; }
+
+/* 대화창 */
 .answer-dialog {
   position: absolute;
   top: 25%;
@@ -131,13 +142,18 @@
     background-size: cover;
   }
   
-  /* 캐릭터 위치 조정 */
+  /* 캐릭터 위치를 더 높게 조정 (bottom 30% -> 45%) */
   .kang-haesang {
-    bottom: 30% !important;
+    bottom: 45% !important;
   }
   
-  /* 마지막 선택지 */
+  /* 마지막 선택지 위치 조정 */
   .final-choice {
-    bottom: 40%;
+    bottom: 55%;
+  }
+
+  /* 대화창 위치 조정 */
+  .answer-dialog {
+    top: 15%;
   }
 }
