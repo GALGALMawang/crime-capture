@@ -6,7 +6,7 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-bottom: 15%; 
+  padding-bottom: 2dvh; /* 주소창 바로 위로 붙임 */
   box-sizing: border-box;
 }
 
@@ -26,24 +26,26 @@
 .start-button {
   position: relative;
   z-index: 10;
-  background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
+  background: rgba(229, 57, 53, 0.8); /* 약간 투명하게 */
   color: white;
-  border: none;
-  padding: 1.2rem 3rem;
-  font-size: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.5rem 1.2rem; /* 크기 대폭 축소 */
+  font-size: 0.85rem;      /* 작은 폰트 */
   font-weight: bold;
-  border-radius: 40px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 25px rgba(229, 57, 53, 0.6);
-  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  animation: pulseMini 2s ease-in-out infinite;
+  margin-bottom: 10px; /* 실제 주소창 바로 위에 가깝게 */
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.08); }
+@keyframes pulseMini {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.05); opacity: 1; }
 }
 
+/* 온보딩 및 기타 스타일 유지 */
 .guide-overlay {
   position: fixed;
   top: 0;
@@ -127,7 +129,6 @@
   color: #ffffff;
 }
 
-/* 게이지 설명 스타일 */
 .gauge-desc-item {
   margin: 1rem 0;
   background: rgba(255, 255, 255, 0.05);
@@ -184,13 +185,11 @@
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.3);
 }
 
 .guide-close-button:hover { 
   background: #ff5252; 
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(229, 57, 53, 0.5);
 }
 
 @media (max-height: 500px) {
