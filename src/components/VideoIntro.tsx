@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import './VideoIntro.css';
 
 interface VideoIntroProps {
@@ -10,38 +10,21 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  useEffect(() => {
-    // 5초 후 자동으로 넘어감 (비디오가 너무 길거나 오류 시)
-    const timeout = setTimeout(() => {
-      onEnded();
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, [onEnded]);
-
-  const handleCanPlay = () => {
+  const handleLoadedData = () => {
     setIsLoading(false);
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // 자동 재생 실패 시 무음으로
-        if (videoRef.current) {
-          videoRef.current.muted = true;
-          videoRef.current.play();
-        }
-      });
+      // 무음으로 자동 재생 (브라우저 정책)
+      videoRef.current.muted = true;
+      videoRef.current.play();
     }
   };
 
   const handleError = () => {
     setHasError(true);
     setIsLoading(false);
-    // 비디오 오류 시 바로 넘어감
-    setTimeout(() => {
-      onEnded();
-    }, 1000);
   };
 
-  const handleSkip = () => {
+  const handleStart = () => {
     if (videoRef.current) {
       videoRef.current.pause();
     }
@@ -76,17 +59,16 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
       <video
         ref={videoRef}
         className="intro-video"
-        onCanPlay={handleCanPlay}
+        onLoadedData={handleLoadedData}
         onEnded={handleVideoEnded}
         onError={handleError}
-        autoPlay
         playsInline
-        muted={false}
+        muted
       >
         <source src="/videos/intro.mp4" type="video/mp4" />
         <source src="/videos/intro.mov" type="video/quicktime" />
       </video>
-      <button className="skip-button" onClick={handleSkip}>
+      <button className="skip-button" onClick={handleStart}>
         건너뛰기 ▶
       </button>
     </div>
