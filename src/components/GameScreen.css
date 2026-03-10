@@ -142,18 +142,18 @@
     background-size: cover;
   }
   
-  /* 캐릭터 위치를 더 높게 조정 (bottom 30% -> 45%) */
+  /* 캐릭터 위치 조정 (bottom 45% -> 35%) */
   .kang-haesang {
-    bottom: 45% !important;
+    bottom: 35% !important;
   }
   
   /* 마지막 선택지 위치 조정 */
   .final-choice {
-    bottom: 55%;
+    bottom: 45%;
   }
 
   /* 대화창 위치 조정 */
   .answer-dialog {
-    top: 15%;
+    top: 20%;
   }
 }
