@@ -9,14 +9,10 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleLoadedData = () => {
     setIsLoading(false);
-    if (videoRef.current) {
-      // 무음으로 자동 재생 (브라우저 정책)
-      videoRef.current.muted = true;
-      videoRef.current.play();
-    }
   };
 
   const handleError = () => {
@@ -31,10 +27,12 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
     onEnded();
   };
 
-  // 화면 클릭 시 소리 켜기
-  const handleEnableSound = () => {
-    if (videoRef.current) {
+  // 화면 클릭 시 소리 켜고 재생 시작
+  const handlePlayVideo = () => {
+    if (videoRef.current && !isPlaying) {
       videoRef.current.muted = false;
+      videoRef.current.play();
+      setIsPlaying(true);
     }
   };
 
@@ -57,10 +55,15 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   }
 
   return (
-    <div className="video-intro" onClick={handleEnableSound}>
+    <div className="video-intro" onClick={handlePlayVideo}>
       {isLoading && (
         <div className="video-loading">
           <p>🎬 로딩 중...</p>
+        </div>
+      )}
+      {!isLoading && !isPlaying && (
+        <div className="video-loading">
+          <p>클릭해서 시작</p>
         </div>
       )}
       <video
@@ -70,7 +73,6 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
         onEnded={handleVideoEnded}
         onError={handleError}
         playsInline
-        muted
       >
         <source src="/videos/intro.mp4" type="video/mp4" />
         <source src="/videos/intro.mov" type="video/quicktime" />
