@@ -7,6 +7,7 @@ interface VideoIntroProps {
 
 const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,19 +25,37 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
     if (videoRef.current) {
       videoRef.current.pause();
     }
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+    }
     onEnded();
   };
 
-  // 화면 클릭 시 소리 켜고 재생 시작
+  // 화면 클릭 시 소리 켜고 재생 시작 (증폭)
   const handlePlayVideo = () => {
     if (videoRef.current && !isPlaying) {
-      videoRef.current.muted = false;
+      // Web Audio API로 소리 증폭
+      const audioContext = new AudioContext();
+      const source = audioContext.createMediaElementSource(videoRef.current);
+      const gainNode = audioContext.createGain();
+
+      // 소리 1.5배 증폭
+      gainNode.gain.value = 1.5;
+
+      source.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+
+      audioContextRef.current = audioContext;
+
       videoRef.current.play();
       setIsPlaying(true);
     }
   };
 
   const handleVideoEnded = () => {
+    if (audioContextRef.current) {
+      audioContextRef.current.close();
+    }
     onEnded();
   };
 
