@@ -3,84 +3,63 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 1.5rem 2rem;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(15px);
   z-index: 100;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .question-title {
   color: #ffd700;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
   text-align: center;
   font-weight: bold;
 }
 
 .questions-container {
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  flex-direction: column; /* 세로로 쌓기 */
+  gap: 0.8rem;
+  max-width: 100%;
 }
 
 .question-card {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 15px;
-  padding: 1.2rem;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem;
   color: white;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.2s;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
   outline: none;
 }
 
-.question-card:hover:not(.disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-5px);
-  border-color: #ffd700;
+.question-card:active {
+  transform: scale(0.98);
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.question-card:active:not(.disabled) {
-  transform: scale(0.95);
+.question-text {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
 }
 
-.question-card.disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
+/* CCTV 특수 카드 */
 .question-card.cctv-card {
-  border-color: #9C27B0;
-  background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(103, 58, 183, 0.1) 100%);
-}
-
-.question-card.cctv-card:hover:not(.disabled) {
   border-color: #BA68C8;
   background: linear-gradient(135deg, rgba(156, 39, 176, 0.2) 0%, rgba(103, 58, 183, 0.2) 100%);
 }
 
-.question-text {
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1.4;
-}
-
-/* 가로 모드 (모바일) 최적화 */
-@media (max-height: 500px) {
-  .question-selector {
-    padding: 0.8rem 1rem;
+/* PC 또는 큰 화면 가로 모드 (필요 시) */
+@media (min-width: 1000px) {
+  .questions-container {
+    flex-direction: row;
   }
-  .question-title { font-size: 0.9rem; margin-bottom: 0.5rem; }
-  .questions-container { gap: 0.8rem; }
-  .question-card { padding: 0.8rem; border-radius: 10px; }
-  .question-text { font-size: 0.95rem; }
 }

@@ -58,13 +58,23 @@ function App() {
     setGameState('intro');
   };
 
+  const isLandscapeState = gameState === 'video' || gameState === 'intro';
+  const isPortraitState = gameState === 'playing' || gameState === 'ended';
+
   return (
-    <div className="app">
-      {/* 세로 모드 방지 오버레이 */}
-      <div className="rotate-device-overlay">
+    <div className={`app ${isLandscapeState ? 'require-landscape' : 'require-portrait'}`}>
+      {/* 가로 모드 권장 (비디오, 인트로용) */}
+      <div className="rotate-overlay landscape-guide">
         <div className="rotate-icon">📱 🔄</div>
-        <h2>기기를 가로로 눕혀주세요!</h2>
-        <p>이 게임은 가로 모드 전용입니다.</p>
+        <h2>화면을 가로로 돌려주세요</h2>
+        <p>인트로를 위해 가로 모드가 필요합니다.</p>
+      </div>
+
+      {/* 세로 모드 권장 (심문, 엔딩용) */}
+      <div className="rotate-overlay portrait-guide">
+        <div className="rotate-icon">📱 ⬆️</div>
+        <h2>화면을 세로로 세워주세요</h2>
+        <p>심문을 위해 세로 모드가 필요합니다.</p>
       </div>
 
       {gameState === 'video' && <VideoIntro onEnded={handleVideoEnd} />}
