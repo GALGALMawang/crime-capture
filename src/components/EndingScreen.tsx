@@ -39,9 +39,6 @@ const EndingScreen = ({ onRestart, result }: EndingScreenProps) => {
             alt="엔딩 결과"
             className="ending-result-image"
           />
-          <div className="ending-label">
-            {isAngerEnding ? "😤 분노 엔딩" : isRemorseEnding ? "😭 자백 엔딩" : "😐 무승부"}
-          </div>
         </div>
 
         <div className="ending-body">

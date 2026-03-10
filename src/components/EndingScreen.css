@@ -47,20 +47,6 @@
   object-fit: cover; /* 1:1 영역 꽉 채움 */
 }
 
-.ending-label {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  padding: 8px 15px;
-  border-radius: 10px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  z-index: 10;
-}
-
 .ending-body {
   flex: 1;
   padding: 2rem;
