@@ -18,9 +18,9 @@
 
 .video-loading {
   position: absolute;
-  top: 70%;
+  bottom: 100px;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   text-align: center;
   color: white;
   font-size: 2rem;
