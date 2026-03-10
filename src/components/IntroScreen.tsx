@@ -6,33 +6,73 @@ interface IntroScreenProps {
 }
 
 const IntroScreen = ({ onStart }: IntroScreenProps) => {
-  const [showGuide, setShowGuide] = useState(true);
+  const [showOnboarding, setShowOnboarding] = useState(false);
+  const [step, setStep] = useState(1);
+
+  const handleStartClick = () => {
+    setShowOnboarding(true);
+    setStep(1);
+  };
+
+  const nextStep = () => {
+    if (step < 2) {
+      setStep(step + 1);
+    } else {
+      setShowOnboarding(false);
+      onStart();
+    }
+  };
 
   return (
     <div className="intro-screen">
       <div className="intro-background" />
       
-      {!showGuide && (
-        <button className="start-button" onClick={onStart}>
+      {!showOnboarding && (
+        <button className="start-button" onClick={handleStartClick}>
           심문 시작
         </button>
       )}
 
-      {showGuide && (
+      {showOnboarding && (
         <div className="guide-overlay">
-          <div className="guide-popup">
-            <h2 className="guide-title">👮 마석도 형사님, 준비됐지?</h2>
-            <div className="guide-content">
-              <p>강해상을 심문해서 확실한 <strong>자백</strong>을 받아내야 해.</p>
-              <ul>
-                <li>질문을 던져서 강해상의 반응을 살펴.</li>
-                <li><strong>열받게</strong> 해서 폭발시켜도 형사님의 승리야! (진실의 방으로!)</li>
-                <li>적절히 구슬리거나... <strong>CCTV</strong>를 잠시 가리고 교육(?)을 시켜서 뉘우치게 만들어봐.</li>
-              </ul>
-              <p className="guide-hint">※ 진실의 방으로 보낼 준비 됐나?</p>
-            </div>
-            <button className="guide-close-button" onClick={() => setShowGuide(false)}>
-              알았어, 시작하자고
+          <div className="guide-popup onboarding">
+            <div className="step-indicator">{step} / 2</div>
+            
+            {step === 1 ? (
+              <div className="onboarding-page">
+                <h2 className="guide-title">👮 마석도 형사님, 준비됐지?</h2>
+                <div className="guide-content">
+                  <p>강해상을 심문해서 확실한 <strong>자백</strong>을 받아내야 해.</p>
+                  <p>상황에 맞는 질문을 던져서 녀석의 멘탈을 흔들어봐.</p>
+                  <div className="guide-item">
+                    <span className="icon">💬</span>
+                    <span>질문을 선택해서 답변을 들어보자.</span>
+                  </div>
+                  <div className="guide-item">
+                    <span className="icon">🚨</span>
+                    <span>필요하다면 <strong>CCTV</strong>를 가리고 확실히 교육(?) 시켜도 좋아.</span>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="onboarding-page">
+                <h2 className="guide-title">📊 게이지 설명</h2>
+                <div className="guide-content">
+                  <div className="gauge-desc-item">
+                    <div className="gauge-sample anger">😤 열받음</div>
+                    <p>녀석을 도발하면 올라가. <strong>100%</strong>가 되면 폭발해서 자백을 받아낼 수 있지! (진실의 방 승리!)</p>
+                  </div>
+                  <div className="gauge-desc-item">
+                    <div className="gauge-sample remorse">😢 반성</div>
+                    <p>반성 수치가 높을수록 녀석이 무너져. <strong>100%</strong>가 되면 눈물을 흘리며 자백하게 돼. (자백 승리!)</p>
+                  </div>
+                  <p className="guide-hint">※ 열받음이 오르면 반성 수치는 조금씩 깎이니 주의해!</p>
+                </div>
+              </div>
+            )}
+
+            <button className="guide-close-button" onClick={nextStep}>
+              {step === 1 ? '다음 (게이지 설명) ▶' : '알았어, 시작하자고!'}
             </button>
           </div>
         </div>
