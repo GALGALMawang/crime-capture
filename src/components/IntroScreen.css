@@ -35,7 +35,6 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(229, 57, 53, 0.6);
   animation: pulse 2s ease-in-out infinite;
-  margin-bottom: 100px;
 }
 
 .start-button:hover {
