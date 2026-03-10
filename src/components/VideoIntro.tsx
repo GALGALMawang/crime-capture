@@ -42,7 +42,7 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
         <div className="video-loading">
           <p>🎬 게임 로딩 중...</p>
         </div>
-        <button className="skip-button" onClick={handleSkip}>
+        <button className="skip-button" onClick={handleStart}>
           건너뛰기 ▶
         </button>
       </div>
