@@ -31,6 +31,13 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
     onEnded();
   };
 
+  // 화면 클릭 시 소리 켜기
+  const handleEnableSound = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = false;
+    }
+  };
+
   const handleVideoEnded = () => {
     onEnded();
   };
@@ -50,7 +57,7 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   }
 
   return (
-    <div className="video-intro">
+    <div className="video-intro" onClick={handleEnableSound}>
       {isLoading && (
         <div className="video-loading">
           <p>🎬 로딩 중...</p>
