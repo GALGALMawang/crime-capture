@@ -2,11 +2,10 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-bottom: 80px;
 }
 
 .intro-background {
@@ -37,6 +36,7 @@
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(229, 57, 53, 0.6);
   animation: pulse 2s ease-in-out infinite;
+  margin-bottom: 100px;
 }
 
 .start-button:hover {
