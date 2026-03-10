@@ -168,13 +168,6 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     return '#2E7D32';
   };
 
-  // CCTV 힌트 메시지
-  const getCCTVHint = () => {
-    if (remorse < 70) return "🤔 CCTV가 좀 더럽네? 닦아줄까?";
-    if (remorse < 90) return "👀 이거 한 번 더 하면 될 것 같은데?";
-    return "🎬 이거다! CCTV 가리기!";
-  };
-
   return (
     <div className="game-screen">
       <div className="interrogation-room" />
