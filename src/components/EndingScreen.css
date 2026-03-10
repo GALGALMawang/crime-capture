@@ -4,72 +4,53 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2000;
-  backdrop-filter: blur(8px);
-  animation: overlayFadeIn 0.3s ease-out;
-}
-
-@keyframes overlayFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  backdrop-filter: blur(10px);
 }
 
 .ending-popup {
   background: #1a1a1a;
-  width: 90%;
-  max-width: 450px;
-  max-height: 95vh;
+  width: 85vw; /* 화면의 85% 차지 */
+  max-width: 800px;
+  height: 70vh; /* 가로 모드에서 적절한 높이 */
+  max-height: 450px;
   border-radius: 20px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  display: flex; /* 가로로 배치 (이미지 왼쪽, 텍스트 오른쪽) */
+  flex-direction: row; 
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.1);
   animation: popupScaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes popupScaleUp {
-  from { transform: scale(0.8); opacity: 0; }
+  from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
 
 .ending-image-container {
-  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1; /* 완벽한 정사각형 유지 */
+  flex-shrink: 0; /* 이미지 크기 보존 */
   position: relative;
   background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* aspect-ratio 지원 안하는 브라우저 대비 */
-  aspect-ratio: 1 / 1;
-}
-
-/* aspect-ratio 미지원 브라우저용 padding-top hack (필요 시) */
-@supports not (aspect-ratio: 1 / 1) {
-  .ending-image-container::before {
-    content: "";
-    display: block;
-    padding-top: 100%;
-  }
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ending-result-image {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 1:1 영역 꽉 채움 */
 }
 
 .ending-label {
   position: absolute;
   top: 15px;
-  right: 15px;
+  left: 15px;
   padding: 8px 15px;
   border-radius: 10px;
   font-weight: bold;
@@ -81,59 +62,62 @@
 }
 
 .ending-body {
-  padding: 1.2rem;
-  text-align: center;
-  color: white;
   flex: 1;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: left; /* 가로 모드이므로 왼쪽 정렬이 더 깔끔함 */
+  color: white;
   overflow-y: auto;
 }
 
 .ending-title {
-  font-size: 1.3rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
   color: #ffd700;
+  font-weight: 900;
 }
 
 .ending-desc {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   color: #ccc;
-  margin-bottom: 1rem;
-  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
 .ending-stats-mini {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.2rem;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .mini-stat {
-  padding: 4px 10px;
+  padding: 8px 15px;
   background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  font-size: 0.85rem;
+  border-radius: 10px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
 .ending-actions {
   display: flex;
-  gap: 0.8rem;
-  justify-content: center;
+  gap: 1rem;
 }
 
 .action-button {
-  padding: 12px 15px;
-  border-radius: 10px;
-  font-size: 0.95rem;
+  padding: 15px 25px;
+  border-radius: 12px;
+  font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
   border: none;
   transition: all 0.2s;
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
 }
 
 .action-button.share {
@@ -147,48 +131,18 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* 가로 모드 최적화 (가로가 길고 세로가 짧을 때) */
-@media (orientation: landscape) and (max-height: 500px) {
-  .ending-popup {
-    flex-direction: row;
-    max-width: 600px;
-    width: 90%;
-    height: 85vh;
-    max-height: 350px;
-  }
-
-  .ending-image-container {
-    height: 100%;
-    width: auto;
-    aspect-ratio: 1 / 1;
-    flex: 0 0 auto; /* 크기 고정 */
-  }
-  
-  .ending-result-image {
-    position: relative; /* 100% height를 위해 */
-    width: auto;
-    height: 100%;
-  }
-
-  .ending-body {
-    padding: 1rem;
-  }
-
-  .ending-title {
-    font-size: 1.1rem;
-  }
-
-  .ending-desc {
-    font-size: 0.85rem;
-  }
+.action-button:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-@media (max-width: 500px) and (orientation: portrait) {
+/* 화면 높이가 매우 좁은 모바일 가로 모드 대응 */
+@media (max-height: 400px) {
   .ending-popup {
-    width: 95%;
+    height: 90vh;
   }
-  .action-button {
-    font-size: 0.85rem;
-    padding: 10px;
-  }
+  .ending-title { font-size: 1.4rem; }
+  .ending-desc { font-size: 0.9rem; }
+  .action-button { padding: 10px 15px; font-size: 1rem; }
 }
