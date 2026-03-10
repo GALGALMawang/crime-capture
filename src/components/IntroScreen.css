@@ -23,7 +23,7 @@
 
 .start-button {
   position: absolute;
-  bottom: 26%;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
   width: 400px;
@@ -46,6 +46,6 @@
   .start-button {
     width: 80%;
     height: 60px;
-    bottom: 15%;
+    bottom: 20%;
   }
 }
