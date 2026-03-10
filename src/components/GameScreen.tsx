@@ -60,35 +60,39 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
 
   // CCTV 가리기 처리
   const handleCCTVClean = () => {
-    setIsProcessing(true); // 심문 중단
+    setIsProcessing(true);
     setShowCCTVClean(true);
     const randomDialogue = CCTV_CLEAN_DIALOGUES[Math.floor(Math.random() * CCTV_CLEAN_DIALOGUES.length)];
     setCctvDialogue(randomDialogue);
 
-    // 비명 소리 재생 (실패해도 로직은 계속 진행)
-    const scream = new Audio('/audio/scream.mp3');
-    scream.volume = 0.8;
-    scream.play().catch(err => console.log('비명 소리 재생 실패:', err));
+    // 비명 소리 재생 시도 (corrupted 파일 대비)
+    playAudioFile('/audio/scream.mp3').catch(err => {
+      console.warn('비명 소리 재생 실패 (무시하고 진행):', err);
+    });
 
-    // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시 + 즉시 우는 표정
+    // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시
     setTimeout(() => {
       setShowCCTVClean(false);
       setCctvDialogue('');
       setRemorse(MAX_GAUGE);
       setEmotion('crying'); 
       setShowFinalChoice(true);
-      // setIsProcessing(true) 상태를 유지하여 일반 질문이 나오지 않게 함
     }, 3000);
   };
 
   // 마지막 선택지 처리 (반성 엔딩)
   const handleFinalChoice = async () => {
+    if (isEnding) return;
     setIsEnding(true);
+    setIsProcessing(true); // idle 방지
+    
     const randomDialogue = REMORSE_ENDING_DIALOGUES[Math.floor(Math.random() * REMORSE_ENDING_DIALOGUES.length)];
     setEmotion('crying');
     setLastAnswer(randomDialogue.text);
     setSubtitle(randomDialogue.subtitle);
 
+    // 자백 사운드 재생 시도 (있을 경우)
+    
     setTimeout(() => {
       onEnd({ endingType: 'remorse', finalAnger: anger, finalRemorse: MAX_GAUGE });
     }, 4000);
