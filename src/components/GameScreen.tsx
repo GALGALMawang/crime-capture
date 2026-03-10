@@ -138,6 +138,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     if (question.audioFile) {
       try {
         await playAudioFile(question.audioFile);
+        setLastAnswer(''); // 오디오 재생 끝나면 대사 사라지게 함
       } catch (error) {
         console.error('Audio error:', error);
       }
