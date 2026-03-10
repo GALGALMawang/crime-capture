@@ -93,7 +93,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     setLastAnswer(randomDialogue.text);
     setSubtitle(randomDialogue.subtitle);
 
-    // 4초 후 확실하게 엔딩 화면으로 전환
+    // 3초 후 확실하게 엔딩 화면으로 전환
     setTimeout(() => {
       console.log('Triggering end screen...');
       onEnd({ 
@@ -101,7 +101,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
         finalAnger: anger, 
         finalRemorse: MAX_GAUGE 
       });
-    }, 4000);
+    }, 3000);
   };
 
   // 열받음 엔딩 체크

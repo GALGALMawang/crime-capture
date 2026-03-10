@@ -11,6 +11,7 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showSkip, setShowSkip] = useState(false); // 건너뛰기 버튼 표시 상태
 
   const handleLoadedData = () => {
     setIsLoading(false);
@@ -49,6 +50,11 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
 
       videoRef.current.play();
       setIsPlaying(true);
+
+      // 5초 후 건너뛰기 버튼 활성화
+      setTimeout(() => {
+        setShowSkip(true);
+      }, 5000);
     }
   };
 
@@ -96,9 +102,12 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
         <source src="/videos/intro.mp4" type="video/mp4" />
         <source src="/videos/intro.mov" type="video/quicktime" />
       </video>
-      <button className="skip-button" onClick={handleStart}>
-        건너뛰기 ▶
-      </button>
+      
+      {showSkip && (
+        <button className="skip-button" onClick={handleStart}>
+          건너뛰기 ▶
+        </button>
+      )}
     </div>
   );
 };
