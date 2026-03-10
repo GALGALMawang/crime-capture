@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './IntroScreen.css';
 
 interface IntroScreenProps {
@@ -8,6 +8,15 @@ interface IntroScreenProps {
 const IntroScreen = ({ onStart }: IntroScreenProps) => {
   const [showOnboarding, setShowOnboarding] = useState(false);
   const [step, setStep] = useState(1);
+  const [isButtonVisible, setIsButtonVisible] = useState(false); // 버튼 표시 상태
+
+  // 2초 후 버튼 나타나게 함
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsButtonVisible(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleStartClick = () => {
     setShowOnboarding(true);
@@ -27,7 +36,7 @@ const IntroScreen = ({ onStart }: IntroScreenProps) => {
     <div className="intro-screen">
       <div className="intro-background" />
       
-      {!showOnboarding && (
+      {!showOnboarding && isButtonVisible && (
         <button className="start-button" onClick={handleStartClick}>
           심문 시작
         </button>
