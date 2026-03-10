@@ -209,6 +209,41 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* 마지막 선택지 */
+.final-choice {
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+  right: 5%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+}
+
+.final-choice-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 1.2rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: 900;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(76, 175, 80, 0.6);
+  animation: finalPulse 1.5s ease-in-out infinite;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.final-choice-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes finalPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(76, 175, 80, 0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(76, 175, 80, 0.8); }
+}
+
 /* 세로 모드(Portrait) 대응 미디어 쿼리 */
 @media screen and (orientation: portrait) {
   .interrogation-room {
