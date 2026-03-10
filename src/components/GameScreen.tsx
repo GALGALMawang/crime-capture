@@ -64,46 +64,10 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     const randomDialogue = CCTV_CLEAN_DIALOGUES[Math.floor(Math.random() * CCTV_CLEAN_DIALOGUES.length)];
     setCctvDialogue(randomDialogue);
 
-    // 비명 소리 합성 (Web Audio API)
-    const playScream = () => {
-      try {
-        const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-
-        // 비명 효과음 합성
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
-
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
-
-        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.5);
-
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
-
-        oscillator.start(audioContext.currentTime);
-        oscillator.stop(audioContext.currentTime + 1);
-
-        // 두 번째 비명
-        setTimeout(() => {
-          const osc2 = audioContext.createOscillator();
-          const gain2 = audioContext.createGain();
-          osc2.connect(gain2);
-          gain2.connect(audioContext.destination);
-          osc2.frequency.setValueAtTime(600, audioContext.currentTime);
-          osc2.frequency.exponentialRampToValueAtTime(200, audioContext.currentTime + 0.8);
-          gain2.gain.setValueAtTime(0.4, audioContext.currentTime);
-          gain2.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
-          osc2.start(audioContext.currentTime);
-          osc2.stop(audioContext.currentTime + 0.8);
-        }, 300);
-      } catch (e) {
-        console.log('비명 소리 재생 실패', e);
-      }
-    };
-
-    playScream();
+    // 비명 소리 재생
+    const scream = new Audio('/audio/scream.mp3');
+    scream.volume = 0.8;
+    scream.play().catch(() => console.log('비명 소리 재생 실패'));
 
     // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시
     setTimeout(() => {
