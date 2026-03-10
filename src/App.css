@@ -24,3 +24,51 @@ body {
 button {
   font-family: inherit;
 }
+
+/* 세로 모드 방지 오버레이 */
+.rotate-device-overlay {
+  display: none;
+}
+
+/* 모바일 세로 모드일 때 강제 표시 */
+@media screen and (max-width: 900px) and (orientation: portrait) {
+  .rotate-device-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    color: white;
+    z-index: 99999; /* 모든 것 위에 표시 */
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .rotate-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    animation: rotateAnim 2s infinite ease-in-out;
+  }
+
+  .rotate-device-overlay h2 {
+    font-size: 1.8rem;
+    color: #e53935;
+    margin-bottom: 0.5rem;
+  }
+
+  .rotate-device-overlay p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+}
+
+@keyframes rotateAnim {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
+}

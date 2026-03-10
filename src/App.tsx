@@ -48,6 +48,13 @@ function App() {
 
   return (
     <div className="app">
+      {/* 세로 모드 방지 오버레이 */}
+      <div className="rotate-device-overlay">
+        <div className="rotate-icon">📱 🔄</div>
+        <h2>기기를 가로로 눕혀주세요!</h2>
+        <p>이 게임은 가로 모드 전용입니다.</p>
+      </div>
+
       {gameState === 'video' && <VideoIntro onEnded={handleVideoEnd} />}
       {gameState === 'intro' && <IntroScreen onStart={handleStart} />}
       {(gameState === 'playing' || gameState === 'ended') && (
