@@ -17,66 +17,39 @@
   background-image: url('/images/intro-background.png');
   background-size: cover;
   background-position: center;
-  filter: brightness(0.4);
-}
-
-.intro-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 2rem;
-}
-
-.intro-title {
-  color: white;
-  font-size: 4rem;
-  font-weight: bold;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
-  margin-bottom: 1rem;
-}
-
-.intro-subtitle {
-  color: #ffd700;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  filter: brightness(0.5);
 }
 
 .start-button {
+  position: relative;
+  z-index: 10;
   background: linear-gradient(135deg, #e53935 0%, #c62828 100%);
   color: white;
   border: none;
-  padding: 1.2rem 4rem;
-  font-size: 1.5rem;
+  padding: 1.5rem 4rem;
+  font-size: 2rem;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 40px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(229, 57, 53, 0.5);
+  box-shadow: 0 6px 20px rgba(229, 57, 53, 0.6);
+  animation: pulse 2s ease-in-out infinite;
 }
 
 .start-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 6px 25px rgba(229, 57, 53, 0.7);
+  transform: scale(1.1);
+  box-shadow: 0 8px 30px rgba(229, 57, 53, 0.8);
 }
 
-.start-button:active {
-  transform: scale(0.98);
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 /* 가로 모드 */
 @media (max-width: 768px) {
-  .intro-title {
-    font-size: 2.5rem;
-  }
-
-  .intro-subtitle {
-    font-size: 1.2rem;
-  }
-
   .start-button {
-    padding: 1rem 3rem;
-    font-size: 1.2rem;
+    padding: 1.2rem 3rem;
+    font-size: 1.5rem;
   }
 }
