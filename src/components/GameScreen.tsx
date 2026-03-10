@@ -69,11 +69,13 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     scream.volume = 0.8;
     scream.play().catch(() => console.log('비명 소리 재생 실패'));
 
-    // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시
+    // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시 + 즉시 우는 표정
     setTimeout(() => {
       setShowCCTVClean(false);
       setCctvDialogue('');
       setRemorse(MAX_GAUGE);
+      setEmotion('crying'); // 즉시 우는 표정으로 변경
+      setIsProcessing(true); // idle 표정 변화를 막기 위해 처리 중 상태로 유지
       setShowFinalChoice(true);
     }, 3000);
   };
