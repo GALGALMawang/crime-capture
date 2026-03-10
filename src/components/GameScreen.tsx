@@ -253,22 +253,22 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
             {remorse >= 80 && <div className="gauge-warning remorse">💦 뉘우치는 중!</div>}
           </div>
         </div>
-
-        {/* 대화창 */}
-        {lastAnswer && !showCCTVClean && (
-          <div className="answer-dialog">
-            <div className="dialog-content">
-              <div className="speaker-name">
-                {emotion === 'crying' ? '😭 강해상:' : emotion === 'angry' && isEnding ? '😤 강해상:' : '강해상:'}
-              </div>
-              <div className="dialog-text">{lastAnswer}</div>
-              {subtitle && <div className="dialog-subtitle">{subtitle}</div>}
-            </div>
-          </div>
-        )}
       </div>
 
       <KangHaesang emotion={displayEmotion} isSpeaking={isSpeaking} />
+
+      {/* 대화창 - 강해상 이미지 아래 */}
+      {lastAnswer && !showCCTVClean && (
+        <div className="answer-dialog">
+          <div className="dialog-content">
+            <div className="speaker-name">
+              {emotion === 'crying' ? '😭 강해상:' : emotion === 'angry' && isEnding ? '😤 강해상:' : '강해상:'}
+            </div>
+            <div className="dialog-text">{lastAnswer}</div>
+            {subtitle && <div className="dialog-subtitle">{subtitle}</div>}
+          </div>
+        </div>
+      )}
 
       {/* 마지막 선택지 - 반성 게이지 100% 달성 시 */}
       {showFinalChoice && !isEnding && (
