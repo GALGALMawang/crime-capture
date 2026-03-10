@@ -213,13 +213,6 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
           </div>
         </div>
 
-        {/* CCTV 힌트 */}
-        {!isEnding && !showFinalChoice && (
-          <div className="cctv-hint-bar">
-            {getCCTVHint()}
-          </div>
-        )}
-
         {/* 두 개의 게이지 */}
         <div className="gauges-container">
           {/* 열받음 게이지 */}
