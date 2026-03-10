@@ -39,8 +39,8 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
       const source = audioContext.createMediaElementSource(videoRef.current);
       const gainNode = audioContext.createGain();
 
-      // 소리 1.5배 증폭
-      gainNode.gain.value = 1.5;
+      // 소리 원본
+      gainNode.gain.value = 1.0;
 
       source.connect(gainNode);
       gainNode.connect(audioContext.destination);
@@ -82,7 +82,7 @@ const VideoIntro = ({ onEnded }: VideoIntroProps) => {
       )}
       {!isLoading && !isPlaying && (
         <div className="video-loading">
-          <p>클릭해서 시작</p>
+          <p>🎬 클릭해서 시작</p>
         </div>
       )}
       <video
