@@ -147,11 +147,16 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     setIsProcessing(false);
 
     // 엔딩이 아니면 다음 라운드로
-    if (!isEnding && currentRound < 4) {
-      setCurrentRound(prev => prev + 1);
-    } else if (!isEnding && currentRound >= 4 && !showFinalChoice) {
-      // 마지막 라운드인데 아직 엔딩 안됨
-      onEnd({ endingType: 'none', finalAnger: anger, finalRemorse: remorse });
+    if (!isEnding) {
+      const nextRound = currentRound + 1;
+      const nextQuestions = getQuestionsByRound(nextRound);
+      
+      if (nextQuestions.length > 0 && nextRound <= 4) {
+        setCurrentRound(nextRound);
+      } else if (!showFinalChoice) {
+        // 다음 라운드 질문이 없거나 4라운드를 초과하면 종료
+        onEnd({ endingType: 'none', finalAnger: anger, finalRemorse: remorse });
+      }
     }
   };
 
