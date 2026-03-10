@@ -71,9 +71,11 @@ const IntroScreen = ({ onStart }: IntroScreenProps) => {
               </div>
             )}
 
-            <button className="guide-close-button" onClick={nextStep}>
-              {step === 1 ? '다음 (게이지 설명) ▶' : '알았어, 시작하자고!'}
-            </button>
+            <div className="guide-close-button-container">
+              <button className="guide-close-button" onClick={nextStep}>
+                {step === 1 ? '다음 (게이지 설명) ▶' : '알았어, 시작하자고!'}
+              </button>
+            </div>
           </div>
         </div>
       )}
