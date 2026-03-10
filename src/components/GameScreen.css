@@ -107,7 +107,7 @@
 /* 대화창 */
 .answer-dialog {
   position: absolute;
-  top: 25%;
+  bottom: 25%; /* 하단 질문창 위쪽으로 배치 */
   left: 5%;
   right: 5%;
   z-index: 25;
@@ -260,8 +260,9 @@
     bottom: 45%;
   }
 
-  /* 대화창 위치 조정 */
+  /* 대화창 위치 조정 (중앙 하단으로) */
   .answer-dialog {
-    top: 20%;
+    top: auto;
+    bottom: 30%;
   }
 }

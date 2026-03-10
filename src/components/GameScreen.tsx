@@ -33,21 +33,22 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
 
   const currentQuestions = getQuestionsByRound(currentRound);
 
-  // 랜덤 표정 변화 (대화 없을 때)
+  // 랜덤 표정 변화 (대화 중이 아닐 때만, 훨씬 긴 주기로)
   useEffect(() => {
-    if (isProcessing || isEnding || showCCTVClean) return;
+    if (isProcessing || isEnding || showCCTVClean || remorse >= MAX_GAUGE) return;
 
     const emotions: KangHaesangEmotion[] = ['normal', 'normal', 'normal', 'angry', 'surprised'];
     const interval = setInterval(() => {
+      // 답변 중이 아닐 때만 아주 가끔 표정을 바꿈
       const randomEmotion = emotions[Math.floor(Math.random() * emotions.length)];
       setIdleEmotion(randomEmotion);
-    }, 3000);
+    }, 10000); // 3초에서 10초로 대폭 늘림
 
     return () => clearInterval(interval);
-  }, [isProcessing, isEnding, showCCTVClean]);
+  }, [isProcessing, isEnding, showCCTVClean, remorse]);
 
-  // 실제 표시할 감정
-  const displayEmotion = (isProcessing || isEnding || remorse >= MAX_GAUGE) ? emotion : idleEmotion;
+  // 실제 표시할 감정: 처리 중이거나 엔딩이거나 반성 만땅이면 현재 감정(emotion), 아니면 마지막 감정을 그대로 쓰거나 아주 가끔 idle 감정
+  const displayEmotion = (isProcessing || isEnding || remorse >= MAX_GAUGE || lastAnswer) ? emotion : idleEmotion;
 
   // 클릭 이펙트
   const handleClick = (e: React.MouseEvent, callback: () => void) => {
