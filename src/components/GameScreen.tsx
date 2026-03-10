@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import type { KangHaesangEmotion, Question } from '../types/game';
 import KangHaesang from './KangHaesang';
 import QuestionSelector from './QuestionSelector';
-import { speakText } from '../services/fishAudioService';
+import { playAudioFile } from '../services/audioService';
 import { getQuestionsByRound } from '../data/questions';
 import './GameScreen.css';
 
@@ -27,25 +27,27 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     setAudioError(null);
     setIsSpeaking(true);
 
-    // Fish Audio로 답변 재생
-    try {
-      await speakText(question.answer);
-    } catch (error) {
-      console.error('Audio error:', error);
-      setAudioError('음성 재생 중 오류가 발생했습니다. 다시 시도해주세요.');
+    // MP3 파일로 답변 재생
+    if (question.audioFile) {
+      try {
+        await playAudioFile(question.audioFile);
+      } catch (error) {
+        console.error('Audio error:', error);
+        setAudioError('음성 파일을 찾을 수 없습니다. 다시 시도해주세요.');
+      }
+    } else {
+      setAudioError('음성 파일이 설정되지 않았습니다.');
     }
 
-    setTimeout(() => {
-      setIsSpeaking(false);
-      setIsProcessing(false);
+    setIsSpeaking(false);
+    setIsProcessing(false);
 
-      // 다음 라운드로 이동
-      if (currentRound < 4) {
-        setCurrentRound(prev => prev + 1);
-      } else {
-        onEnd();
-      }
-    }, 5000); // 대답 후 5초 대기
+    // 다음 라운드로 이동
+    if (currentRound < 4) {
+      setCurrentRound(prev => prev + 1);
+    } else {
+      onEnd();
+    }
   };
 
   return (

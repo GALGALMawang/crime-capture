@@ -7,6 +7,7 @@ export interface Question {
   text: string;
   emotion: KangHaesangEmotion;
   answer: string;
+  audioFile?: string;
 }
 
 // 게임 상태
