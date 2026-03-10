@@ -60,23 +60,24 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
 
   // CCTV 가리기 처리
   const handleCCTVClean = () => {
+    setIsProcessing(true); // 심문 중단
     setShowCCTVClean(true);
     const randomDialogue = CCTV_CLEAN_DIALOGUES[Math.floor(Math.random() * CCTV_CLEAN_DIALOGUES.length)];
     setCctvDialogue(randomDialogue);
 
-    // 비명 소리 재생
+    // 비명 소리 재생 (실패해도 로직은 계속 진행)
     const scream = new Audio('/audio/scream.mp3');
     scream.volume = 0.8;
-    scream.play().catch(() => console.log('비명 소리 재생 실패'));
+    scream.play().catch(err => console.log('비명 소리 재생 실패:', err));
 
     // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시 + 즉시 우는 표정
     setTimeout(() => {
       setShowCCTVClean(false);
       setCctvDialogue('');
       setRemorse(MAX_GAUGE);
-      setEmotion('crying'); // 즉시 우는 표정으로 변경
-      setIsProcessing(true); // idle 표정 변화를 막기 위해 처리 중 상태로 유지
+      setEmotion('crying'); 
       setShowFinalChoice(true);
+      // setIsProcessing(true) 상태를 유지하여 일반 질문이 나오지 않게 함
     }, 3000);
   };
 
