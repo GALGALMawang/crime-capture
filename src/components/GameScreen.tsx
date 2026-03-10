@@ -47,10 +47,11 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
   }, [isProcessing, isEnding, showCCTVClean]);
 
   // 실제 표시할 감정
-  const displayEmotion = isProcessing || isEnding ? emotion : idleEmotion;
+  const displayEmotion = (isProcessing || isEnding || remorse >= MAX_GAUGE) ? emotion : idleEmotion;
 
   // 클릭 이펙트
   const handleClick = (e: React.MouseEvent, callback: () => void) => {
+    if (isEnding) return;
     setClickEffect({ x: e.clientX, y: e.clientY });
     setTimeout(() => {
       setClickEffect(null);
@@ -65,7 +66,7 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     const randomDialogue = CCTV_CLEAN_DIALOGUES[Math.floor(Math.random() * CCTV_CLEAN_DIALOGUES.length)];
     setCctvDialogue(randomDialogue);
 
-    // 비명 소리 재생 시도 (corrupted 파일 대비)
+    // 비명 소리 재생 시도
     playAudioFile('/audio/scream.mp3').catch(err => {
       console.warn('비명 소리 재생 실패 (무시하고 진행):', err);
     });
@@ -77,25 +78,29 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
       setRemorse(MAX_GAUGE);
       setEmotion('crying'); 
       setShowFinalChoice(true);
-      setIsProcessing(false); // 조작 잠금 해제
+      setIsProcessing(false); 
     }, 3000);
   };
 
   // 마지막 선택지 처리 (반성 엔딩)
-  const handleFinalChoice = async () => {
+  const handleFinalChoice = () => {
     if (isEnding) return;
     setIsEnding(true);
-    setIsProcessing(true); // idle 방지
+    setIsProcessing(true);
     
     const randomDialogue = REMORSE_ENDING_DIALOGUES[Math.floor(Math.random() * REMORSE_ENDING_DIALOGUES.length)];
     setEmotion('crying');
     setLastAnswer(randomDialogue.text);
     setSubtitle(randomDialogue.subtitle);
 
-    // 자백 사운드 재생 시도 (있을 경우)
-    
+    // 4초 후 확실하게 엔딩 화면으로 전환
     setTimeout(() => {
-      onEnd({ endingType: 'remorse', finalAnger: anger, finalRemorse: MAX_GAUGE });
+      console.log('Triggering end screen...');
+      onEnd({ 
+        endingType: 'remorse', 
+        finalAnger: anger, 
+        finalRemorse: MAX_GAUGE 
+      });
     }, 4000);
   };
 
