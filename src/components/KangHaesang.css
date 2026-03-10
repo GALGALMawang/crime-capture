@@ -58,3 +58,14 @@
     transform: scale(1.02);
   }
 }
+
+@media (max-width: 768px) {
+  .character-image {
+    width: 200px;
+    height: 250px;
+  }
+
+  .kang-haesang {
+    bottom: 35%;
+  }
+}

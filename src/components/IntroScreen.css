@@ -15,18 +15,19 @@
   width: 100%;
   height: 100%;
   background-image: url('/images/intro-background.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(1);
 }
 
 .start-button {
   position: absolute;
-  bottom: 2%;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
-  width: 350px;
-  height: 80px;
+  width: 400px;
+  height: 150px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -35,4 +36,16 @@
 
 .start-button:hover {
   opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .intro-background {
+    background-size: cover;
+  }
+
+  .start-button {
+    width: 80%;
+    height: 60px;
+    bottom: 15%;
+  }
 }

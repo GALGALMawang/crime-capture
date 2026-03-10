@@ -62,3 +62,20 @@
 .restart-button:active {
   transform: scale(0.98);
 }
+
+@media (max-width: 768px) {
+  .ending-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ending-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  .restart-button {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+  }
+}
