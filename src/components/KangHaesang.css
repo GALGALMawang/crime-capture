@@ -25,6 +25,16 @@
   animation: bounce 0.5s ease-in-out;
 }
 
+.kang-haesang.crying .character-image {
+  animation: cry 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(100, 100, 255, 0.5));
+}
+
+.kang-haesang.broken .character-image {
+  animation: broken 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(100, 100, 100, 0.5)) grayscale(0.3);
+}
+
 .kang-haesang.speaking .character-image {
   animation: speak 0.3s ease-in-out infinite;
 }
@@ -47,6 +57,38 @@
   }
   50% {
     transform: translateY(-15px);
+  }
+}
+
+@keyframes cry {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  25% {
+    transform: translateY(3px) scale(0.98);
+  }
+  50% {
+    transform: translateY(0) scale(1);
+  }
+  75% {
+    transform: translateY(3px) scale(0.98);
+  }
+}
+
+@keyframes broken {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(5px) rotate(1deg);
   }
 }
 

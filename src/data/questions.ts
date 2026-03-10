@@ -6,31 +6,19 @@ export const QUESTIONS_DATA: RoundData[] = [
     questions: [
       {
         id: 1,
-        text: '죄송하지만, 어제 밤 10시경 어디에 계셨나요?',
+        text: '야, 너 어제 밤 어디 있었냐?',
         emotion: 'normal',
-        answer: '10시는? 내가 팀원들하고 마포 사무실에서 일하고 있었지. 김선혜 과장이 입증해줄 수 있어.',
-        audioFile: '/audio/answer1.mp3'
+        answer: '10시? 내가 팀원들이랑 사무실에서 일하고 있었는데? 왜?',
+        audioFile: '/audio/answer1.mp3',
+        anger: 20
       },
       {
         id: 2,
-        text: '피해자와 지난주 큰 싸움을 했다고 들었는데 사실인가요?',
+        text: '니가 그 사람이랑 싸웠다며?',
         emotion: 'angry',
-        answer: '야, 근거 없는 소리하지 마라! 우리는 그냥 업무적으로 토론했을 뿐이야. 누가 그런 헛소문을 퍼뜨린 거지?',
-        audioFile: '/audio/answer2.mp3'
-      },
-      {
-        id: 3,
-        text: '목격자가 당신이 현장에서 뛰쳐나가는 걸 봤다고 하던데요?',
-        emotion: 'surprised',
-        answer: '뭐? 목격자라고? 어떤 목적을 가진 사람이 그런 거짓말을 한 거겠지. 당장 그 목격자를 불러와!',
-        audioFile: '/audio/answer3.mp3'
-      },
-      {
-        id: 4,
-        text: '현장에서 발견된 지문이 당신 것과 일치한다고 합니다.',
-        emotion: 'angry',
-        answer: '이게 무슨 날조인가! 난 그 현장에 단 한 번도 간 적 없다고! 검찰이나 경찰이 제대로 수사 안 하는 거 아니야?',
-        audioFile: '/audio/answer4.mp3'
+        answer: '야! 누가 그런 소문을 퍼뜨린 거야! 근거 없는 소리 하지 마라!',
+        audioFile: '/audio/answer2.mp3',
+        anger: 20
       }
     ]
   },
@@ -38,32 +26,21 @@ export const QUESTIONS_DATA: RoundData[] = [
     round: 2,
     questions: [
       {
-        id: 5,
-        text: '피해자가 당신을 검찰에 고발할 계획이었다고 들었습니다.',
+        id: 3,
+        text: '🚨 CCTV가 좀 더럽네? 닦아줄까?',
         emotion: 'surprised',
-        answer: '검찰에 고발? 웃기는 소리! 그 사람이 나한테 빚이 있었지. 내가 빌려준 돈이 얼만데!',
-        audioFile: '/audio/answer5.mp3'
+        answer: '뭐?! 야 잠깐! 그게 무슨 소리야! 변호사!',
+        audioFile: '/audio/answer3.mp3',
+        anger: 0,
+        isCCTVClean: true
       },
       {
-        id: 6,
-        text: '당신의 통화 기록에 피해자 마지막 통화가 기록되어 있습니다.',
-        emotion: 'normal',
-        answer: '그래, 통화했지. 당시 거래에 대해 확인하려고 했어. 그게 범죄냐?',
-        audioFile: '/audio/answer6.mp3'
-      },
-      {
-        id: 7,
-        text: '주변에서 당신이 폭력적인 성향이 있다고 증언하고 있습니다.',
+        id: 4,
+        text: '현장에서 니 지문 나왔는데?',
         emotion: 'angry',
-        answer: '야! 누가 그런 소리를 해봐! 내가 누군지 알고 말하나? 근거 없는 모함이야!',
-        audioFile: '/audio/answer7.mp3'
-      },
-      {
-        id: 8,
-        text: '당신이 소지한 흉기에서 피해자의 DNA가 검출되었습니다.',
-        emotion: 'angry',
-        answer: '그건 내 물건이 아니야! 누가 나 몰래 집어넣었겠지! 이런 식으로 나를 범인으로 몰고 싶은 거야?',
-        audioFile: '/audio/answer8.mp3'
+        answer: '이게 날 범인으로 몰려는 거야?! 내가 거기 안 갔어!',
+        audioFile: '/audio/answer4.mp3',
+        anger: 20
       }
     ]
   },
@@ -71,68 +48,56 @@ export const QUESTIONS_DATA: RoundData[] = [
     round: 3,
     questions: [
       {
-        id: 9,
-        text: '피해자의 휴대전화에 당신의 메시지가 남겨져 있었다고 합니다.',
+        id: 5,
+        text: '피해자가 니를 고발한다던데?',
         emotion: 'surprised',
-        answer: '내 메시지? 그게 뭐였는데? 내가 평소에 하던 말인 거 아냐. 그걸 범죄 증거라고 할 수 있나?',
-        audioFile: '/audio/answer9.mp3'
+        answer: '뭐? 고발? 웃기지 마라! 내가 빌려준 돈이 얼만데!',
+        audioFile: '/audio/answer5.mp3',
+        anger: 20
       },
       {
-        id: 10,
-        text: '당신이 피해자에게 돈을 갚으라고 위협했다는 제보가 들어왔습니다.',
+        id: 6,
+        text: '🚨 CCTV 화면이 너무 흐릿하네?',
         emotion: 'angry',
-        answer: '야! 누가 그런 소리를 하는 거야? 그게 떼돈이라서 갚으라는 게 아니지! 내 돈인데!',
-        audioFile: '/audio/answer10.mp3'
-      },
-      {
-        id: 11,
-        text: 'CCTV 영상에 당신이 피해자의 집 근처에 있는 게 찍혔습니다.',
-        emotion: 'normal',
-        answer: '그래, 갔었지. 약속이 있어서 가는 길이었어. 그게 범죄 증거가 될 수 있나?',
-        audioFile: '/audio/answer11.mp3'
-      },
-      {
-        id: 12,
-        text: '피해자가 작성한 유서에 당신의 이름이 언급되어 있습니다.',
-        emotion: 'surprised',
-        answer: '뭐? 내 이름이 언급됐다고? 그 유서가 진짜인지 확인해봐야겠네. 누가 날 끌어들이려고 하는 거지?',
-        audioFile: '/audio/answer12.mp3'
-      }
-    ]
-  },
-  {
-    round: 4,
-    questions: [
-      {
-        id: 13,
-        text: '당신의 은행 계좌에서 큰 금액이 인출된 기록이 있습니다.',
-        emotion: 'normal',
-        answer: '내 돈에서 내가 인출했는데 뭐가 문제야? 투자 때문이었지.',
-        audioFile: '/audio/answer13.mp3'
-      },
-      {
-        id: 14,
-        text: '피해자의 친구들이 당신을 보고 공포심을 느꼈다고 증언했습니다.',
-        emotion: 'angry',
-        answer: '그게 다 자네들 수사 방해하려는 거지! 내가 겁먹게 생겼나 보지?',
-        audioFile: '/audio/answer14.mp3'
-      },
-      {
-        id: 15,
-        text: '사건 당일 당신의 차량이 범죄 현장 근처에서 발견되었습니다.',
-        emotion: 'surprised',
-        answer: '내 차라니? 누가 훔쳐 간 거겠지! 당장 경찰에 신고해야겠네!',
-        audioFile: '/audio/answer15.mp3'
-      },
-      {
-        id: 16,
-        text: '마지막으로 한 말씀만 하십시오. 당신이 범인이 아닌 이유를 말씀해주세요.',
-        emotion: 'normal',
-        answer: '내가 살인을 할 필요가 없지. 내 방식이 그런 게 아니야. 진범을 찾아낼 테니 기다려봐.',
-        audioFile: '/audio/answer16.mp3'
+        answer: '야!! 이거 불법이야! 니들 지금 뭐 하는 거야!',
+        audioFile: '/audio/answer6.mp3',
+        anger: 0,
+        isCCTVClean: true
       }
     ]
   }
+];
+
+// 열받음 엔딩 - 이것도 승리!
+export const ANGER_ENDING_DIALOGUES = [
+  {
+    text: "하! 니들이 날 어떻게 해? 증거 없잖아! 껄껄껄!",
+    subtitle: "🔥 강해상이 폭발했습니다! (폭력 엔딩)"
+  },
+  {
+    text: "이따위 수사 받느니 차라리 감방에 있겠다! 껄껄!",
+    subtitle: "🔥 강해상이 비웃습니다! (폭력 엔딩)"
+  }
+];
+
+// 반성 엔딩 - 자백 엔딩
+export const REMORSE_ENDING_DIALOGUES = [
+  {
+    text: "흑... 흑흑... 내가 잘못했어요... 다 말할게요... 흑흑...",
+    subtitle: "✨ 강해상이 울며 자백합니다! (자백 엔딩)"
+  },
+  {
+    text: "으윽... 죄송해요... 자수할게요... 흑...",
+    subtitle: "✨ 강해상이 완전히 무너졌습니다! (자백 엔딩)"
+  }
+];
+
+// CCTV 가릴 때 대사들
+export const CCTV_CLEAN_DIALOGUES = [
+  "크억! 야! 왜 때려! 불법이야!",
+  "아 윽! 니들 진짜! 그만 쳐!",
+  "으윽! 마석도! 알았어! 알았다고!",
+  "아악! 그만! 할게! 다 말할게!"
 ];
 
 export const getQuestionsByRound = (round: number): Question[] => {

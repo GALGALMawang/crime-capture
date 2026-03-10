@@ -11,6 +11,7 @@
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
 }
 
 .questions-container {
@@ -31,6 +32,8 @@
   backdrop-filter: blur(10px);
   text-align: left;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
 .question-card:hover:not(.disabled) {
@@ -47,6 +50,62 @@
 .question-card.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* CCTV 가리기 카드 특수 스타일 */
+.question-card.cctv-card {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.2) 0%, rgba(103, 58, 183, 0.2) 100%);
+  border-color: #9C27B0;
+  animation: cctvGlow 2s ease-in-out infinite;
+}
+
+.question-card.cctv-card:hover:not(.disabled) {
+  background: linear-gradient(135deg, rgba(156, 39, 176, 0.4) 0%, rgba(103, 58, 183, 0.3) 100%);
+  border-color: #BA68C8;
+  box-shadow: 0 0 20px rgba(156, 39, 176, 0.5);
+}
+
+@keyframes cctvGlow {
+  0%, 100% { box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3); }
+  50% { box-shadow: 0 4px 25px rgba(156, 39, 176, 0.6); }
+}
+
+.question-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.question-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cctv-badge {
+  background: rgba(156, 39, 176, 0.3);
+  color: #E1BEE7;
+  animation: blink 1s infinite;
+}
+
+.anger-badge {
+  background: rgba(244, 67, 54, 0.3);
+  color: #FFCDD2;
+}
+
+.remorse-badge {
+  background: rgba(76, 175, 80, 0.3);
+  color: #C8E6C9;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 .question-text {
@@ -74,5 +133,9 @@
     bottom: 3%;
     left: 5%;
     right: 5%;
+  }
+
+  .question-badge {
+    font-size: 0.7rem;
   }
 }
