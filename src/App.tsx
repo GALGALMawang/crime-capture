@@ -50,12 +50,16 @@ function App() {
     <div className="app">
       {gameState === 'video' && <VideoIntro onEnded={handleVideoEnd} />}
       {gameState === 'intro' && <IntroScreen onStart={handleStart} />}
-      {gameState === 'playing' && <GameScreen onEnd={handleEnd} />}
-      {gameState === 'ended' && (
-        <EndingScreen
-          onRestart={handleRestart}
-          result={gameResult}
-        />
+      {(gameState === 'playing' || gameState === 'ended') && (
+        <>
+          <GameScreen onEnd={handleEnd} />
+          {gameState === 'ended' && (
+            <EndingScreen
+              onRestart={handleRestart}
+              result={gameResult}
+            />
+          )}
+        </>
       )}
     </div>
   );

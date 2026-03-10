@@ -1,157 +1,196 @@
-.ending-screen {
+.ending-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(8px);
+  animation: overlayFadeIn 0.3s ease-out;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.ending-popup {
+  background: #1a1a1a;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: popupScaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popupScaleUp {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.ending-image-container {
+  width: 100%;
+  height: 250px;
   position: relative;
   overflow: hidden;
 }
 
-.ending-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('/images/interrogation-room.png');
-  background-size: cover;
-  background-position: center;
-  filter: brightness(0.3) grayscale(0.5);
-}
-
-/* 엔딩 이미지 - 가로 비율 */
-.ending-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  animation: fadeIn 0.5s ease-out;
-}
-
-.ending-image img {
+.ending-result-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.ending-content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
-  padding: 2rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  max-width: 500px;
-}
-
-.ending-badge {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  border-radius: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.ending-badge.anger {
-  background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
-  color: white;
-}
-
-.ending-badge.remorse {
-  background: linear-gradient(135deg, #2196F3 0%, #1565C0 100%);
-  color: white;
-}
-
-.ending-badge.neutral {
-  background: linear-gradient(135deg, #607D8B 0%, #455A64 100%);
-  color: white;
-}
-
-.ending-quote {
-  color: white;
-  font-size: 1.2rem;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.ending-stats {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.stat {
+.ending-label {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 8px 15px;
+  border-radius: 10px;
   font-weight: bold;
   font-size: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
+  color: white;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
 }
 
-.stat.anger {
-  background: rgba(244, 67, 54, 0.3);
-  color: #FFCDD2;
+.ending-body {
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+  overflow-y: auto;
 }
 
-.stat.remorse {
-  background: rgba(33, 150, 243, 0.3);
-  color: #BBDEFB;
+.ending-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  color: #ffd700;
 }
 
-.restart-button {
+.ending-desc {
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+
+.ending-stats-mini {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mini-stat {
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.ending-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.action-button {
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  flex: 1;
+}
+
+.action-button.share {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.action-button.restart {
   background: linear-gradient(135deg, #424242 0%, #212121 100%);
   color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.restart-button:hover {
-  transform: scale(1.05);
-  background: linear-gradient(135deg, #616161 0%, #424242 100%);
+.action-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-/* 가로 모드 최적화 */
-@media (max-width: 768px) {
-  .ending-content {
-    padding: 1.5rem;
-    max-width: 90%;
+.action-button:active {
+  transform: translateY(0);
+}
+
+/* 가로 모드 최적화 (가로가 길고 세로가 짧을 때) */
+@media (orientation: landscape) and (max-height: 500px) {
+  .ending-popup {
+    flex-direction: row;
+    max-width: 700px;
+    height: 85vh;
   }
 
-  .ending-badge {
-    font-size: 1rem;
+  .ending-image-container {
+    width: 40%;
+    height: 100%;
   }
 
-  .ending-quote {
-    font-size: 1rem;
+  .ending-body {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
   }
 
-  .ending-stats {
-    gap: 1rem;
+  .ending-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
   }
 
-  .stat {
+  .ending-desc {
     font-size: 0.9rem;
-    padding: 0.4rem 0.8rem;
+    margin-bottom: 0.8rem;
   }
 
-  .restart-button {
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
+  .ending-stats-mini {
+    margin-bottom: 1rem;
+  }
+
+  .action-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+  }
+}
+
+/* 일반 모바일 세로 */
+@media (max-width: 500px) and (orientation: portrait) {
+  .ending-popup {
+    width: 95%;
+  }
+
+  .ending-image-container {
+    height: 200px;
+  }
+
+  .ending-title {
+    font-size: 1.3rem;
+  }
+
+  .ending-actions {
+    flex-direction: column;
   }
 }
