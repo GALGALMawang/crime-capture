@@ -22,36 +22,6 @@ const QuestionSelector: React.FC<QuestionSelectorProps> = ({ questions, onSelect
     return {};
   };
 
-  const getBadges = (question: Question) => {
-    const badges = [];
-
-    if (question.isCCTVClean) {
-      badges.push(
-        <span key="cctv" className="question-badge cctv-badge">
-          🚨 CCTV 가리기
-        </span>
-      );
-    }
-
-    if (question.anger && question.anger > 0) {
-      badges.push(
-        <span key="anger" className="question-badge anger-badge">
-          😤 열받음 +{question.anger}
-        </span>
-      );
-    }
-
-    if (question.remorse && question.remorse > 0 && !question.isCCTVClean) {
-      badges.push(
-        <span key="remorse" className="question-badge remorse-badge">
-          😢 반성 +{question.remorse}
-        </span>
-      );
-    }
-
-    return badges;
-  };
-
   return (
     <div className="question-selector">
       <h2 className="question-title">🎯 질문을 선택하세요</h2>

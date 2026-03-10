@@ -59,7 +59,6 @@ function App() {
   };
 
   const isLandscapeState = gameState === 'video' || gameState === 'intro';
-  const isPortraitState = gameState === 'playing' || gameState === 'ended';
 
   return (
     <div className={`app ${isLandscapeState ? 'require-landscape' : 'require-portrait'}`}>
