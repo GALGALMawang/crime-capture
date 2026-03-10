@@ -50,7 +50,7 @@ const IntroScreen = ({ onStart }: IntroScreenProps) => {
                   </div>
                   <div className="guide-item">
                     <span className="icon">🚨</span>
-                    <span>필요하다면 <strong>CCTV</strong>를 가리고 확실히 교육(?) 시켜도 좋아.</span>
+                    <span><strong>열받게</strong> 하면 수사가 실패할 수 있으니 조심해!</span>
                   </div>
                 </div>
               </div>
@@ -60,13 +60,13 @@ const IntroScreen = ({ onStart }: IntroScreenProps) => {
                 <div className="guide-content">
                   <div className="gauge-desc-item">
                     <div className="gauge-sample anger">😤 열받음</div>
-                    <p>녀석을 도발하면 올라가. <strong>100%</strong>가 되면 폭발해서 자백을 받아낼 수 있지! (진실의 방 승리!)</p>
+                    <p>녀석을 너무 도발하면 올라가. <strong>100%</strong>가 되면 폭주해서 수사가 <strong>실패</strong>로 끝나니 주의해!</p>
                   </div>
                   <div className="gauge-desc-item">
                     <div className="gauge-sample remorse">😢 반성</div>
                     <p>반성 수치가 높을수록 녀석이 무너져. <strong>100%</strong>가 되면 눈물을 흘리며 자백하게 돼. (자백 승리!)</p>
                   </div>
-                  <p className="guide-hint">※ 열받음이 오르면 반성 수치는 조금씩 깎이니 주의해!</p>
+                  <p className="guide-hint">※ 열받음이 오르면 반성 수치는 조금씩 깎이니 조절 잘해!</p>
                 </div>
               </div>
             )}

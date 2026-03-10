@@ -46,10 +46,10 @@ const EndingScreen = ({ onRestart, result }: EndingScreenProps) => {
 
         <div className="ending-body">
           <h2 className="ending-title">
-            {isRemorseEnding ? "성공! 자백을 받아냈습니다!" : isAngerEnding ? "폭발! 강해상이 미쳐버렸습니다!" : "심문 종료"}
+            {isRemorseEnding ? "성공! 자백을 받아냈습니다!" : isAngerEnding ? "수사 실패! 강해상이 폭주했습니다!" : "심문 종료"}
           </h2>
           <p className="ending-desc">
-            {isRemorseEnding ? "강해상이 모든 범죄를 인정하고 눈물을 흘립니다." : isAngerEnding ? "강해상의 분노가 극에 달해 수사가 중단되었습니다." : "아쉽게도 결정적인 자백을 받아내지 못했습니다."}
+            {isRemorseEnding ? "강해상이 모든 범죄를 인정하고 눈물을 흘립니다." : isAngerEnding ? "강해상을 너무 열받게 하여 수사가 완전히 중단되었습니다." : "아쉽게도 결정적인 자백을 받아내지 못했습니다."}
           </p>
 
           <div className="ending-stats-mini">

@@ -102,18 +102,20 @@
 
 .ending-actions {
   display: flex;
-  gap: 1rem;
+  flex-direction: column; /* 세로 배치 */
+  gap: 0.8rem;
+  width: 100%;
 }
 
 .action-button {
-  padding: 15px 25px;
+  width: 100%; /* 너비 꽉 채움 */
+  padding: 12px 15px;
   border-radius: 12px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   border: none;
   transition: all 0.2s;
-  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
