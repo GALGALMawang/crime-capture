@@ -64,6 +64,11 @@ const GameScreen: React.FC<GameScreenProps> = ({ onEnd }) => {
     const randomDialogue = CCTV_CLEAN_DIALOGUES[Math.floor(Math.random() * CCTV_CLEAN_DIALOGUES.length)];
     setCctvDialogue(randomDialogue);
 
+    // 비명 소리 재생
+    playAudioFile('/audio/scream.mp3').catch(() => {
+      console.log('비명 소리 재생 실패');
+    });
+
     // 3초 후 화면 복구 + 반성 게이지 100% 달성 + 마지막 선택지 표시
     setTimeout(() => {
       setShowCCTVClean(false);
